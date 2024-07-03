@@ -1,4 +1,5 @@
 import React from 'react';
+import { Spotlight } from './UI/spotlight';
 
 function Hero() {
   return (
