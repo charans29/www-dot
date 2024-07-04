@@ -17,13 +17,16 @@ function Hero() {
             }}
         >
         </div>
-        <div className="absolute inset-16 items-center z-50 pointer-events-none" 
+        <div className="absolute inset-16 items-center z-50" 
              style={{
-                backgroundImage: 'linear-gradient(90deg, rgba(234,88,88,1) -30%, rgba(18,53,62,1) 110%)',
-                margin: '2%'
+                backgroundImage: `linear-gradient(90deg, rgba(234,88,88,0.65) -30%, rgba(18,53,62,1) 110%),
+                                  url('https://as2.ftcdn.net/v2/jpg/01/78/48/61/1000_F_178486172_MyE3t4dYzDHBX1Cwkby4mSbESnbpuqb7.jpg')`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                margin: '2%',
             }}
         >
-            <p className="sm:text-4xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-500 py-2 px-20">
+            <p className="sm:text-4xl font-bold relative z-20 bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-300 py-2 px-20">
                 CHARAN'S
             </p>
         </div>
