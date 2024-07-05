@@ -22,3 +22,26 @@ body {
     rgb(var(--background-start-rgb));
     
 }
+
+@keyframes blink {
+  0%, 25%, 50%, 75%, 100% { opacity: 0; }
+  12.5%, 37.5%, 62.5%, 87.5% { opacity: 0.25; }
+}
+
+.blink {
+  animation: blink 300ms linear infinite;
+}
+
+.stable {
+  opacity: 1;
+}
+
+.blink_me {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
