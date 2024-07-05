@@ -9,7 +9,7 @@ function Logo() {
         setShowText(true);
         const blinkTimer = setTimeout(() => {
             setIsBlinking(false);
-        }, 400); 
+        }, 300); 
         
         return () => clearTimeout(blinkTimer);
         }, 1000); 

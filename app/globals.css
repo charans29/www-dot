@@ -34,7 +34,7 @@ body {
 }
 
 .blink {
-  animation: blink 10ms linear infinite;
+  animation: blink 30ms linear infinite;
 }
 
 .hidden {
