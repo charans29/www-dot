@@ -2,15 +2,31 @@
 import React, { useEffect, useState } from 'react';
 
 function Hero() {
+  // const [isBlinking, setIsBlinking] = useState(true);
+
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setIsBlinking(false);
+  //   }, 400);
+
+  //   return () => clearTimeout(timer);
+  // }, []);
+
   const [isBlinking, setIsBlinking] = useState(true);
+  const [showText, setShowText] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsBlinking(false);
-    }, 200);
+    const delayTimer = setTimeout(() => {
+      setShowText(true);
+      const blinkTimer = setTimeout(() => {
+        setIsBlinking(false);
+      }, 400); 
+      return () => clearTimeout(blinkTimer);
+    }, 1000); 
 
-    return () => clearTimeout(timer);
+    return () => clearTimeout(delayTimer);
   }, []);
+  
 
   return (
     <div
@@ -30,22 +46,20 @@ function Hero() {
         </div>
         <div className="absolute inset-16 z-50" 
              style={{
-                backgroundImage: `linear-gradient(90deg, rgba(234,88,88,0.65) 35%, rgba(18,53,62,1) 110%),
+                backgroundImage: `linear-gradient(90deg, rgba(234,88,88,0.65) 10%, rgba(18,53,62,1) 110%),
                                   url('style3.png')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'left top 10%',
                 margin: '2%'
             }}
         >
-            <p className={`sm:text-4xl inset-0 z-10 font-bold relative bg-clip-text text-transparent py-2 px-20 ${isBlinking ? 'blink' : 'stable'}`}
-               style={{
-                backgroundImage:'linear-gradient(90deg, rgba(255,255,255,1) 100%, rgba(2,163,200,1) 40%)'
-               }}
-            >
-              [ C H A R A N ' S ]
+            <p className={`text-5xl inset-0 z-10 font-bold relative bg-clip-text text-transparent py-2 px-20 
+               ${showText ? (isBlinking ? 'blink' : 'stable') : 'fade-in'} 
+               bg-gradient-to-b from-neutral-100 to-neutral-300 `}>
+              C H A R A N' S
             </p>
         </div>
-        {/* bg-gradient-to-b from-neutral-200 to-neutral-300 */}
+        {/* isBlinking ? 'blink' : 'stable' */}
     </div>
   );
 }
