@@ -19,7 +19,7 @@ function Logo() {
 
   return (
     <div className="flex justify-between">
-        <div className={`text-3xl inset-0 z-10 font-bold relative bg-clip-text py-2 px-24
+        <div className={`text-3xl inset-0 z-50 font-bold relative bg-clip-text py-2 px-24
             bg-gradient-to-b from-neutral-100 to-neutral-200 ${showText ? (isBlinking ? 'blink' : 'stable') : 'fade-in'} `}>
             [ C H A R A N' S ]
         </div>

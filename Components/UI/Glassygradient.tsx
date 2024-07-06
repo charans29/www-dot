@@ -16,8 +16,7 @@ function Glassygradient({ children }: GlassygradientProps) {
             style={{
                 backgroundImage: 'linear-gradient(90deg, rgba(212,83,83,1) -80%, rgba(0,12,15,1) 100%)'
             }}
-        >
-        </div>
+        />
         {children}
     </div>
   );
