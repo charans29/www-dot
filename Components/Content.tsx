@@ -2,7 +2,7 @@ import React from 'react'
 
 function Content() {
   return (
-    <div className="h-screen w-full relative flex items-center justify-center"
+    <div className="h-screen w-screen relative flex items-center justify-center"
     style={{
       backgroundImage: 'linear-gradient(135deg,#1e1e20,#0e0e11 32%)'
     }}

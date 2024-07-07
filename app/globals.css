@@ -19,8 +19,7 @@ body {
       transparent,
       rgb(var(--background-end-rgb))
     )
-    rgb(var(--background-start-rgb));
-    
+    rgb(var(--background-start-rgb));    
 }
 
 .fade-in {
@@ -43,4 +42,18 @@ body {
 
 .stable {
   opacity: 1;
+}
+
+@media (min-width: 640px) { /* corresponds to Tailwind's 'sm' breakpoint */
+  .responsive-bg {
+    background-position: left top 5%;
+    margin: 1.5%;
+  }
+}
+
+@media (min-width: 768px) { /* corresponds to Tailwind's 'md' breakpoint */
+  .responsive-bg {
+    background-position: left top;
+    margin: 1%;
+  }
 }

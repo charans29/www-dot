@@ -7,7 +7,7 @@ interface BeamProps {
 
 function Blurrybeams({ className }:BeamProps) {
   return (
-    <div className={cn("border-none blur-sm", className)}/>
+    <div className={cn("border-1 blur-sm", className)}/>
   )
 }
 
