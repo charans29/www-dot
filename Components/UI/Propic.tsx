@@ -10,7 +10,7 @@ function Propic({ children, className }:PropicProps) {
   return (
     <div className={cn("absolute z-50 overflow-hidden", "inset-2 sm:inset-3 md:inset-4 lg:inset-5 xl:inset-6", "m-2 sm:m-3 md:m-4 lg:m-5 xl:m-6", className)}
         style={{
-        backgroundImage: `linear-gradient(90deg, rgba(334,88,88,0.75) 10%, rgba(18,53,62,1) 110%),
+        backgroundImage: `linear-gradient(90deg, rgba(234,88,88,0.75) 10%, rgba(18,53,62,1) 110%),
                             url('style.png')`,
         backgroundSize: 'cover',
         backgroundPosition: 'left top 10%',
