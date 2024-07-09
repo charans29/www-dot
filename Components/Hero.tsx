@@ -10,9 +10,9 @@ function Hero() {
   return (
     <Glassygradient>
       <Propic className='flex justify-between px-28'>
-        <Leftcard/> 
-        <Rightcard/>
-          {/* <Blurrybeams/> */}
+        <Leftcard className="relative z-20" />
+        <Rightcard className="relative z-20" />
+        <Blurrybeams className='absolute z-50'/>
       </Propic>
     </Glassygradient>
   );

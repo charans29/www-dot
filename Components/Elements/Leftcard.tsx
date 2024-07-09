@@ -1,11 +1,16 @@
+import { cn } from '@/utils/cn';
 import Logo from './Logo';
 
-function Leftcard() {
+interface prop{
+    className?: string;
+  }
+
+function Leftcard({ className }: prop) {
 
     const items = ["Blockchain", "AI", "SDLC", "Cloud", "DevOps", "Maths"];
 
   return (
-    <div className="border border-none bg-none flex flex-col justify-between py-3">
+    <div className={cn("border border-none bg-none flex flex-col justify-between py-3", className)}>
         <div>
             <Logo/>
         </div>

@@ -2,6 +2,12 @@ import { cn } from '@/utils/cn';
 import React, { useEffect, useState } from 'react';
 import { MenuToggle } from '../Toggle';
 import { useAnimate, stagger } from "framer-motion";
+import Menu from './Items';
+import Items from './Items';
+
+interface prop{
+    className?: string;
+  }
 
 function useMenuAnimation(isOpen: boolean) {
     const [scope, animate] = useAnimate();
@@ -49,16 +55,18 @@ function useMenuAnimation(isOpen: boolean) {
   }
 
 
-function Rightcard() {
+function Rightcard({ className }:prop) {
     const items = ["Blockchain", "AI", "SDLC", "Maths", "Cloud", "DevOps"];
-    const [isOpen, setIsOpen] = useState(false);
+    // const [isOpen, setIsOpen] = useState(false);
 
-    const scope = useMenuAnimation(isOpen);
+    // const scope = useMenuAnimation(isOpen);
 
     return (
-      <div className="border border-none bg-none flex flex-col justify-between py-3 mx-5" ref={scope}>
+      <div className={cn("border border-none bg-none flex flex-col justify-between py-3", className)}>
           <div className='flex flex-row-reverse py-5 px-3.5'>
-            <MenuToggle toggle={() => setIsOpen(!isOpen)}/>
+            {/* <Menu/> */}
+            <Items/>
+            {/* <MenuToggle toggle={() => setIsOpen(!isOpen)}/> */}
           </div>
           <div className="flex flex-row-reverse">
             <div className="flex flex-col space-y-3 items-center">
