@@ -48,7 +48,7 @@ export default function Items({ className }:prop) {
     };
 
   return (
-    <div className={cn("top-24 w-5 text-right", className)}>
+    <div className={cn("w-5 text-right z-50", className)}>
       <Menu>
         <MenuButton as="div"ref={scope}>
           <MenuToggle toggle={toggleMenu} />
@@ -71,6 +71,7 @@ export default function Items({ className }:prop) {
             focus:outline-none
             data-[closed]:scale-95
             data-[closed]:opacity-0
+            z-50
             "
         >
           <MenuItem>
