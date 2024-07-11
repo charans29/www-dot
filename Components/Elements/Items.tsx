@@ -37,25 +37,59 @@ function useMenuAnimation(isOpen:boolean) {
 
   return scope;
 }
+
+function useControlScroll(isOpen:boolean) {
+  useEffect(() => {
+    const originalStyle = window.getComputedStyle(document.body).overflow;
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originalStyle;
+    }
+
+    return () => {(document.body.style.overflow = originalStyle)};
+  }, [isOpen]);
+}
   
 
 export default function Items({ className }:prop) {
     const [isOpen, setIsOpen] = useState(false);
     const scope = useMenuAnimation(isOpen);
+
+    useControlScroll(isOpen);
     
     const toggleMenu = () => {
       setIsOpen(!isOpen);
     };
 
+    useEffect(() => {
+      if (isOpen) {
+        const handleClickOutside = (event: MouseEvent) => {
+          if (scope.current && !scope.current.contains(event.target as Node)) {
+            setIsOpen(false);
+          }
+        };
+  
+        document.addEventListener('click', handleClickOutside);
+        return () => {
+          document.removeEventListener('click', handleClickOutside);
+        };
+      }
+    }, [isOpen, scope]);
+  
+    useEffect(() => {
+      document.body.style.overflow = isOpen ? 'auto' : '';
+    }, [isOpen]);
+
   return (
-    <div className={cn("w-5 text-right z-50", className)}>
+    <div className={cn("w-5 text-right", className)}>
       <Menu>
-        <MenuButton as="div"ref={scope}>
+        <MenuButton as="div"ref={scope} className="overflow-clip">
           <MenuToggle toggle={toggleMenu} />
         </MenuButton>
-        <MenuItems transition anchor="bottom end"
+        <MenuItems  anchor="bottom end"
             className="
-            w-36 
+            w-34
             origin-top-right
             rounded-xl 
             border
@@ -70,7 +104,7 @@ export default function Items({ className }:prop) {
             [--anchor-gap:var(--spacing-1)]
             focus:outline-none
             data-[closed]:scale-95
-            data-[closed]:opacity-0
+            data-[closed]:opacity-0 modal
             z-50
             "
         >
@@ -81,8 +115,7 @@ export default function Items({ className }:prop) {
                  <DocumentTextIcon className="h-4 w-4 fill-current text-white/60" />
                  <span className='text-white font-thin text-sm ml-1 font-sans scale-y-90'>
                      Resume
-                 </span>
-                 <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">⌘D</kbd>          
+                 </span>         
             </button>
           </MenuItem>
           <div className="my-1 h-px bg-white/5" />
@@ -94,7 +127,6 @@ export default function Items({ className }:prop) {
                  <span className='text-white font-thin text-sm ml-1 font-sans scale-y-90'>
                      Research
                  </span>
-                 <kbd className="ml-auto hidden font-sans text-xs text-white/50 group-data-[focus]:inline">⌘A</kbd>
              </button>
           </MenuItem>
         </MenuItems>
