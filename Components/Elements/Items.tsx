@@ -87,7 +87,7 @@ export default function Items({ className }:prop) {
         <MenuButton as="div"ref={scope} className="overflow-clip">
           <MenuToggle toggle={toggleMenu} />
         </MenuButton>
-        <MenuItems  anchor="bottom end"
+        <MenuItems  anchor="bottom end" modal={true}
             className="
             w-34
             origin-top-right
