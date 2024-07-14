@@ -24,7 +24,7 @@ function Leftcard({ className }: prop) {
                 CREATIVE
             </span> 
             <div className='border w-36 text-center font-sans font-bold ml-1 relative'>
-                <p className="font-sans scale-y-75">
+                <p className="text-white font-sans scale-y-75">
                     WEB 3.0
                 </p>
                 <div className='absolute left-1/2 transform translate-x-1/2 -translate-y-1/2 bottom-2 w-28 h-1 bg-white/25'/>

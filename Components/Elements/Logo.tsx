@@ -9,7 +9,7 @@ function Logo() {
         setShowText(true);
         const blinkTimer = setTimeout(() => {
             setIsBlinking(false);
-        }, 300); 
+        }, 200); 
         
         return () => clearTimeout(blinkTimer);
         }, 1000); 
@@ -18,7 +18,7 @@ function Logo() {
     }, []);
 
   return (
-    <div className={`flex space-x-2 text-3xl inset-0 font-sans scale-y-90 z-50 font-bold relative bg-clip-text py-2 
+    <div className={`flex text-white space-x-2 text-3xl inset-0 font-sans scale-y-90 z-50 font-bold relative bg-clip-text py-2 
         bg-gradient-to-b from-neutral-100 to-neutral-200 ${showText ? (isBlinking ? 'blink' : 'stable') : 'fade-in'}`}>
             <div>[</div>
             <div>C</div>
