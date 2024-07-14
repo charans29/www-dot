@@ -7,7 +7,7 @@ export default function Home() {
     <main>
       <Hero/>
       <Content/>
-      {/* <Contact/> */}
+      <Contact/>
       <Content/>
       <Content/>
     </main>

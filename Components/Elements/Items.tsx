@@ -1,6 +1,6 @@
 "use client"
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MenuToggle } from '../Toggle';
 import { useAnimate, stagger } from "framer-motion";
 import {
@@ -8,6 +8,7 @@ import {
   DocumentTextIcon,
 } from '@heroicons/react/16/solid'
 import { cn } from '@/utils/cn';
+import { useRouter } from "next/navigation";
 
 interface prop{
   className?: string;
@@ -38,30 +39,25 @@ function useMenuAnimation(isOpen:boolean) {
   return scope;
 }
 
-function useControlScroll(isOpen:boolean) {
-  useEffect(() => {
-    const originalStyle = window.getComputedStyle(document.body).overflow;
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = originalStyle;
-    }
-
-    return () => {(document.body.style.overflow = originalStyle)};
-  }, [isOpen]);
-}
-  
-
 export default function Items({ className }:prop) {
     const [isOpen, setIsOpen] = useState(false);
     const scope = useMenuAnimation(isOpen);
-
-    useControlScroll(isOpen);
+    const router = useRouter();
     
-    const toggleMenu = () => {
-      setIsOpen(!isOpen);
+    const toggleMenu = (path?: string) => {
+      if (typeof path === 'string') {
+        router.push(path);
+      }
     };
-
+    
+    const handleMenuButtonClick = (event: React.MouseEvent) => {
+      if (scope.current && (scope.current.contains(event.target as Node))) {
+        setIsOpen(!isOpen);
+      } else {
+        event.preventDefault();
+      }
+    };
+    
     useEffect(() => {
       if (isOpen) {
         const handleClickOutside = (event: MouseEvent) => {
@@ -76,18 +72,14 @@ export default function Items({ className }:prop) {
         };
       }
     }, [isOpen, scope]);
-  
-    useEffect(() => {
-      document.body.style.overflow = isOpen ? 'auto' : '';
-    }, [isOpen]);
 
   return (
     <div className={cn("w-5 text-right", className)}>
       <Menu>
-        <MenuButton as="div"ref={scope} className="overflow-clip">
-          <MenuToggle toggle={toggleMenu} />
+        <MenuButton as="div" ref={scope} onClick={handleMenuButtonClick} className="cursor-pointer">
+          <MenuToggle toggle={() => setIsOpen(!isOpen)}/>
         </MenuButton>
-        <MenuItems  anchor="bottom end" modal={true}
+        { isOpen && (<MenuItems anchor="bottom end"
             className="
             w-34
             origin-top-right
@@ -110,7 +102,7 @@ export default function Items({ className }:prop) {
         >
           <MenuItem>
             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
-            onClick={toggleMenu}
+            onClick={() => toggleMenu('/resume')}
             >
                  <DocumentTextIcon className="h-4 w-4 fill-current text-white/60" />
                  <span className='text-white font-thin text-sm ml-1 font-sans scale-y-90'>
@@ -121,7 +113,7 @@ export default function Items({ className }:prop) {
           <div className="my-1 h-px bg-white/5" />
           <MenuItem>
             <button className="group flex w-full items-center gap-2 rounded-lg py-1.5 px-3 data-[focus]:bg-white/10"
-            onClick={toggleMenu}
+            onClick={() => toggleMenu('/research')}
             >
                  <DocumentMagnifyingGlassIcon className="h-4 w-4 fill-current text-white/60" />
                  <span className='text-white font-thin text-sm ml-1 font-sans scale-y-90'>
@@ -129,7 +121,7 @@ export default function Items({ className }:prop) {
                  </span>
              </button>
           </MenuItem>
-        </MenuItems>
+        </MenuItems>) }
       </Menu>
     </div>
   )
