@@ -27,12 +27,11 @@ function Logo() {
                 <div>A</div>
                 <div>R</div>
                 <div>A</div>
-            <div>N'</div>
+                <div>N'</div>
             </div>
             <div>S</div>
             <div>]</div>
-    </div>
-        
+    </div>      
   )
 }
 
