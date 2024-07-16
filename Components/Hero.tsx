@@ -8,13 +8,14 @@ import Rightcard from './Elements/Rightcard';
 function Hero() {
   
   return (
-    <Glassygradient>
+    <>
+      <Glassygradient/>
       <Propic className='flex justify-between px-28'>
         <Leftcard className="relative z-20" />
         <Rightcard className="relative z-20" />
         <Blurrybeams className='absolute'/>
       </Propic>
-    </Glassygradient>
+    </>
   );
 }
 
